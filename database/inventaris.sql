@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2023 at 06:37 PM
--- Server version: 10.3.36-MariaDB-0+deb10u2
--- PHP Version: 7.3.33-9+0~20230106.102+debian10~1.gbpc4e85f
+-- Generation Time: May 20, 2025 at 05:56 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -192,6 +192,29 @@ CREATE TABLE `tb_obrolan` (
   `pesan` text NOT NULL,
   `waktu` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pengguna`
+--
+
+CREATE TABLE `tb_pengguna` (
+  `id_` int(11) NOT NULL,
+  `identitas` varchar(40) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `xuser` varchar(50) NOT NULL,
+  `xpass` varchar(200) NOT NULL,
+  `status` enum('1','0') DEFAULT NULL,
+  `level` enum('1','2','3','4','5','6','7','8','9','10','11','12','100') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_pengguna`
+--
+
+INSERT INTO `tb_pengguna` (`id_`, `identitas`, `nama`, `xuser`, `xpass`, `status`, `level`) VALUES
+(1, '0000001', 'Administrator', 'admin@admin.com', '$2y$10$JO5q.TzNt1QDuLRkP3nkveTSUs4IxTIIIDsYIE2IzNC2uEqUOwhB2', '1', '100');
 
 -- --------------------------------------------------------
 
@@ -639,6 +662,13 @@ ALTER TABLE `tb_obrolan`
   ADD PRIMARY KEY (`id_`);
 
 --
+-- Indexes for table `tb_pengguna`
+--
+ALTER TABLE `tb_pengguna`
+  ADD PRIMARY KEY (`id_`),
+  ADD KEY `identitas` (`identitas`);
+
+--
 -- Indexes for table `tb_ruang`
 --
 ALTER TABLE `tb_ruang`
@@ -690,6 +720,12 @@ ALTER TABLE `tb_listruang`
 --
 ALTER TABLE `tb_obrolan`
   MODIFY `id_` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_pengguna`
+--
+ALTER TABLE `tb_pengguna`
+  MODIFY `id_` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_ruang`
